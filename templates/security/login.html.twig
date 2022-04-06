@@ -1,0 +1,39 @@
+{% extends 'log.html.twig' %}
+{% block body %}
+<div class="container-form">
+    <div class="screen-img">
+        <img src="{{ asset('assets/img/logo.png') }}">
+    </div>
+    <div class="screen-form">
+        <div class="screen__content">
+            <form class="login" method="post" action="">
+                <h2>Connexion</h2>
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+                <div class="login__field">
+                    <i class="login__icon fas fa-user"></i>
+                    <input type="text" value="{{ last_username }}" name="email" autocomplete="email" class="login__input" placeholder="User name / Email">
+                </div>
+                <div class="login__field">
+                    <i class="login__icon fas fa-lock"></i>
+                    <input type="password" name="password" class="login__input" placeholder="Password">
+                </div>
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+                <button class="button login__submit" type="submit">
+                    <span class="button__text">CONNECTER</span>
+                    <i class="button__icon fas fa-chevron-right"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
