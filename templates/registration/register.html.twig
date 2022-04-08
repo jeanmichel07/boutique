@@ -6,11 +6,34 @@
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
-
-    <h1>Register</h1>
-<br>
-<br>
-<br>
+    <div class="container-form">
+        <div class="screen-img">
+            <img src="{{ asset('assets/img/logo.png') }}">
+        </div>
+        <div class="screen-form">
+            <div class="screen__content">
+                <form class="login" method="post" action="">
+                    {{ form_start(registrationForm, {'attr':{'class':'login'}}) }}
+                    <h2>Inscription</h2>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-user"></i>
+                        {{ form_row(registrationForm.nom, {'attr':{'class':'login__input', 'placeholder':'Nom'}}) }}
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-lock"></i>
+                        <input type="password" name="password" class="login__input" placeholder="Password">
+                    </div>
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+                    <button class="button login__submit" type="submit">
+                        <span class="button__text">CONNECTER</span>
+                        <i class="button__icon fas fa-chevron-right"></i>
+                    </button>
+                    {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    </div>
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.nom) }}
         {{ form_row(registrationForm.prenom) }}
