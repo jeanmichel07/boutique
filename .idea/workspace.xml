@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="030541e3-9a54-4b64-bb85-bff7e4c459fe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
-    </list>
+    <list default="true" id="030541e3-9a54-4b64-bb85-bff7e4c459fe" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -210,7 +206,7 @@
       <workItem from="1648329613858" duration="17785000" />
       <workItem from="1649103709750" duration="1847000" />
       <workItem from="1649235755960" duration="5428000" />
-      <workItem from="1649420820721" duration="1621000" />
+      <workItem from="1649420820721" duration="1826000" />
     </task>
     <servers />
   </component>
@@ -218,9 +214,9 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="379" y="193" key="com.intellij.ide.util.TipDialog" timestamp="1649420974480">
+    <state x="379" y="193" key="com.intellij.ide.util.TipDialog" timestamp="1649755408037">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="379" y="193" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1649420974480" />
+    <state x="379" y="193" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1649755408037" />
   </component>
 </project>
