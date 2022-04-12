@@ -253,3 +253,9 @@
 .fa-star.gold {
     color: #ffdc0f;
 }
+.link-register{
+    color: #ffffff;
+}
+.link-register:hover{
+    color: ghostwhite;
+}
