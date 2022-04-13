@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'log.html.twig' %}
 
 {% block title %}Register{% endblock %}
 
@@ -20,8 +20,28 @@
                         {{ form_row(registrationForm.nom, {'attr':{'class':'login__input', 'placeholder':'Nom'}}) }}
                     </div>
                     <div class="login__field">
+                        <i class="login__icon fas fa-user"></i>
+                        {{ form_row(registrationForm.prenom, {'attr':{'class':'login__input', 'placeholder':'Prenom'}}) }}
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-user"></i>
+                        {{ form_row(registrationForm.pseudo, {'attr':{'class':'login__input', 'placeholder':'Pseudo'}}) }}
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-user"></i>
+                        {{ form_row(registrationForm.email, {'attr':{'class':'login__input', 'placeholder':'Email'}}) }}
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-user"></i>
+                        {{ form_row(registrationForm.adresse, {'attr':{'class':'login__input', 'placeholder':'Adresse'}}) }}
+                    </div>
+                    <div class="login__field">
                         <i class="login__icon fas fa-lock"></i>
-                        <input type="password" name="password" class="login__input" placeholder="Password">
+                        {{ form_row(registrationForm.password.first, {'attr':{'class':'login__input', 'placeholder':'Email'}}) }}
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-lock"></i>
+                        {{ form_row(registrationForm.password.second, {'attr':{'class':'login__input', 'placeholder':'Email'}}) }}
                     </div>
                     <input type="hidden" name="_csrf_token"
                            value="{{ csrf_token('authenticate') }}"
@@ -34,19 +54,4 @@
             </div>
         </div>
     </div>
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.nom) }}
-        {{ form_row(registrationForm.prenom) }}
-        {{ form_row(registrationForm.pseudo) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.adresse) }}
-        {{ form_row(registrationForm.password.first) }}
-        {{ form_row(registrationForm.password.second) }}
-    {#{{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}#}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
 {% endblock %}

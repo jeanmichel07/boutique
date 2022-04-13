@@ -22,17 +22,25 @@ class RegistrationFormType extends AbstractType
             ->add('nom', TextType::class, [
                 'label' => false
             ])
-            ->add('prenom')
-            ->add('pseudo')
-            ->add('email')
-            ->add('adresse')
+            ->add('prenom', TextType::class,[
+                'label' => false
+            ])
+            ->add('pseudo', TextType::class,[
+                'label' => false
+            ])
+            ->add('email', TextType::class,[
+                'label' => false
+            ])
+            ->add('adresse', TextType::class,[
+                'label' => false
+            ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'The password fields must match.',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'first_options'  => ['label' => 'Password'],
-                'second_options' => ['label' => 'Repeat Password'],
+                'first_options'  => ['label' => false],
+                'second_options' => ['label' => false],
             ])
             /*->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,

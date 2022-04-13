@@ -13,8 +13,18 @@ class AppController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('app/index.html.twig', [
-            'controller_name' => 'AppController',
-        ]);
+        if($this->getUser()){
+            if($this->getUser()->getRoles() == ["ROLE_ADMIN"]){
+                return $this->redirectToRoute('dasboard');
+            }else{
+                return $this->render('app/index.html.twig', [
+                    'controller_name' => 'AppController',
+                ]);
+            }
+        }else{
+            return $this->render('app/index.html.twig', [
+                'controller_name' => 'AppController',
+            ]);
+        }
     }
 }
