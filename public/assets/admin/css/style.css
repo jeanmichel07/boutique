@@ -11,13 +11,23 @@
 :root {
   scroll-behavior: smooth;
 }
-
 body {
   font-family: "Open Sans", sans-serif;
   background: #f6f9ff;
   color: #444444;
 }
-
+.label-img{
+  background: #4154f1;
+  padding: 12px;
+  color: white;
+  cursor: pointer;
+  width: 200px;
+  font-weight: bold;
+  border-radius: 15px;
+}
+.label-img:hover{
+  background: #6f7ef7;
+}
 a {
   color: #4154f1;
   text-decoration: none;

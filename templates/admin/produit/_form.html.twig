@@ -1,4 +1,36 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Nouveau produit</h5>
+{{ form_start(form, {'attr':{'class':'row g-3','enctype':'multipart/form-data'}}) }}
+        <div class="col-8" style="display: flex; flex-direction: column">
+            <label for="img" class="form-label label-img">Image</label>
+            <input id="img" type="file" accept="image/*" onchange="loadFile(event)" name="img" style="display: none">
+            <img class="img_output" src="{{ asset('assets/img/default.jpg') }}" width="200px"/>
+        </div>
+        <div class="col-8">
+            <label for="name" class="form-label">Nom</label>
+            {{ form_widget(form.nom,{'attr':{'id':'name', 'class':'form-control', 'placeholder':'Robe...'}}) }}
+        </div>
+        <div class="col-8">
+            <label for="prix" class="form-label">Prix</label>
+            {{ form_widget(form.prix,{'attr':{'id':'prix', 'class':'form-control', 'placeholder':'00.00'}}) }}
+        </div>
+        <div class="col-8">
+            <label for="categorie" class="form-label">Catégorie</label>
+            {{ form_widget(form.categorie,{'attr':{'id':'categorie', 'class':'form-select','placeholder':'Catégorie'}}) }}
+        </div>
+        <div class="col-8">
+        <button class="btn btn-primary btn-">{{ button_label|default('Save') }}</button>
+        </div>
 {{ form_end(form) }}
+    </div>
+</div>
+<script>
+    var loadFile = function(event) {
+        var output = document.querySelector('.img_output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+            URL.revokeObjectURL(output.src) // free memory
+        }
+    };
+</script>
