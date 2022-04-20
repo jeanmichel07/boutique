@@ -37,10 +37,30 @@ class ProduitController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $produit->setStatus(true);
-            $produitRepository->add($produit);
-            return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
+            if(isset($_FILES['img'])){
+                $errors= array();
+                $file_name = $_FILES['img']['name'];
+                $file_size =$_FILES['img']['size'];
+                $file_tmp =$_FILES['img']['tmp_name'];
+                $file_type=$_FILES['img']['type'];
+                $file_ext=strtolower(explode('.',$_FILES['img']['name'])[1]);
+                $extensions= array("jpeg","jpg","png");
+                if(in_array($file_ext,$extensions)=== false){
+                    $errors[]="extension non supporté";
+                }
+                if($file_size > 4097152){
+                    $errors[]='File size must be excately 4 MB';
+                }
+                if(empty($errors)==true){
+                    move_uploaded_file($file_tmp,"assets/produits/".$file_name);
+                    $produit->setImage($file_name);
+                    $produitRepository->add($produit);
+                    return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
+                }else{
+                    print_r($errors);
+                }
+            }
         }
-
         return $this->renderForm('admin/produit/new.html.twig', [
             'produit' => $produit,
             'form' => $form,
@@ -66,6 +86,27 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if(isset($_FILES['img']) and $_FILES['img']["name"] !== ""){
+                $errors= array();
+                $file_name = $_FILES['img']['name'];
+                $file_size =$_FILES['img']['size'];
+                $file_tmp =$_FILES['img']['tmp_name'];
+                $file_type=$_FILES['img']['type'];
+                $file_ext=strtolower(explode('.',$_FILES['img']['name'])[1]);
+                $extensions= array("jpeg","jpg","png");
+                if(in_array($file_ext,$extensions)=== false){
+                    $errors[]="extension non supporté";
+                }
+                if($file_size > 4097152){
+                    $errors[]='File size must be excately 4 MB';
+                }
+                if(empty($errors)==true){
+                    move_uploaded_file($file_tmp,"assets/produits/".$file_name);
+                    $produit->setImage($file_name);
+                }else{
+                    print_r($errors);
+                }
+            }
             $produitRepository->add($produit);
             return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
         }

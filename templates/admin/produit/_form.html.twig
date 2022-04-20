@@ -1,11 +1,13 @@
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">Nouveau produit</h5>
+        {% set src = produit.nom is not null? 'assets/produits/' ~ produit.image : 'assets/img/default.jpg' %}
+        {% set label_img = produit.nom is not null? 'Modifier l\'image' : 'Choisissez un image' %}
 {{ form_start(form, {'attr':{'class':'row g-3','enctype':'multipart/form-data'}}) }}
         <div class="col-8" style="display: flex; flex-direction: column">
-            <label for="img" class="form-label label-img">Image</label>
+            <label for="img" class="form-label label-img">{{ label_img }}</label>
             <input id="img" type="file" accept="image/*" onchange="loadFile(event)" name="img" style="display: none">
-            <img class="img_output" src="{{ asset('assets/img/default.jpg') }}" width="200px"/>
+            <img class="img_output" src="{{ asset(src) }}" width="200px" />
         </div>
         <div class="col-8">
             <label for="name" class="form-label">Nom</label>
@@ -20,7 +22,7 @@
             {{ form_widget(form.categorie,{'attr':{'id':'categorie', 'class':'form-select','placeholder':'Catégorie'}}) }}
         </div>
         <div class="col-8">
-        <button class="btn btn-primary btn-">{{ button_label|default('Save') }}</button>
+        <button class="btn btn-primary btn-">{{ button_label|default('Enregistrer') }}</button>
         </div>
 {{ form_end(form) }}
     </div>
