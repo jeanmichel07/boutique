@@ -6,10 +6,11 @@
     <h3>Liste des produit</h3>
     <a class="btn btn-primary" href="{{ path('app_produit_new') }}">Nouveau produit</a>
     <hr>
-    <table class="table">
+    <table id="example1" class="table">
         <thead>
             <tr>
                 <th>Numéro</th>
+                <th>Photos</th>
                 <th>Nom</th>
                 <th>Prix</th>
                 <th>Catégorie</th>
@@ -20,6 +21,7 @@
         {% for produit in produits|reverse %}
             <tr>
                 <td>{{ produit.id }}</td>
+               <td> <img src="{{(produit.image) ? asset('assets/produits/' ~ produit.image) : asset('assets/img/default.jpg') }} " width="70" title="" alt=""></td>
                 <td>{{ produit.nom }}</td>
                 <td>{{ produit.prix }}</td>
                 <td>{{ produit.categorie.nom }}</td>
