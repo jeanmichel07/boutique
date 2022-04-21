@@ -38,158 +38,42 @@
             <div class="row">
                 <div class="col-12">
                     <ul id="portfolio-filter">
-                        <li data-filter="*" class="filter-active">Tous</li>
-                        <li data-filter=".filter-1">Robe longue</li>
-                        <li data-filter=".filter-2">Robe courte</li>
-                        <li data-filter=".filter-3">Robe trapèze</li>
+                        {% set var1=nomCateg %}
+                        <a href="{{ path('app_app') }}"><li data-filter="*" {% if var1==null  %}class="filter-active"{% endif %} >Tous</li></a>
+                        {% for categorie in categories %}
+                          <a href="{{ path('app_app', {'categ': categorie.nom}) }}" > <li data-filter=".filter-1" {% if var1==categorie.nom  %}class="filter-active"{% endif %}>{{ categorie.nom }}</li></a>
+                        {% endfor %}
+
                     </ul>
                 </div>
             </div>
             <div class="row portfolio-container">
-                <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-1 wow fadeInUp" data-wow-delay="0.0s">
-                    <div class="portfolio-wrap">
-                        <div class="portfolio-img">
-                            <img src="{{ asset('assets/img/robe-1.jpeg') }}" alt="Image">
-                        </div>
-                        <div class="portfolio-text">
-                            <h3>Robe longue</h3>
-                            <div class="price-dress">
-                                <i>25,6 &euro;</i>
+                {% for produit in produits %}
+                    <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-1 wow fadeInUp" data-wow-delay="0.0s">
+                        <div class="portfolio-wrap">
+                            <div class="portfolio-img">
+                                <img src="{{ asset('assets/produits/' ~ produit.image) }}" alt="Image">
                             </div>
-                            <div class="stars">
-                                <i class="fa fa-star gold"></i>
-                                <i class="fa fa-star gold"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="btn-prod">
-                                <a class="btn" href="{{ asset('assets/img/robe-1.jpeg') }}" data-lightbox="portfolio"><i class="fas fa-eye"></i></a>
-                                <a class="btn" href="{{ asset('assets/img/robe-1.jpeg') }}" data-lightbox="portfolio"><i class="fas fa-shopping-cart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-2 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="portfolio-wrap">
-                        <div class="portfolio-img">
-                            <img src="{{ asset('assets/img/robe-2.jpg') }}" alt="Image">
-                        </div>
-                        <div class="portfolio-text">
-                            <h3>Robe courte classe</h3>
-                            <div class="price-dress">
-                                <i>30 &euro;</i>
-                            </div>
-                            <div class="stars">
-                                <i class="fa fa-star gold"></i>
-                                <i class="fa fa-star gold"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="btn-prod">
-                                <a class="btn" href="{{ asset('assets/img/robe-2.jpg') }}" data-lightbox="portfolio"><i class="fas fa-eye"></i></a>
-                                <a class="btn" href="{{ asset('assets/img/robe-2.jpg') }}" data-lightbox="portfolio"><i class="fas fa-shopping-cart"></i></a>
+                            <div class="portfolio-text">
+                                <h3>{{ produit.nom }}</h3>
+                                <div class="price-dress">
+                                    <i>{{ produit.prix }}&euro;</i>
+                                </div>
+                                <div class="stars">
+                                    <i class="fa fa-star gold"></i>
+                                    <i class="fa fa-star gold"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="btn-prod">
+                                    <a class="btn" href="{{ asset('assets/produits/' ~ produit.image) }}" data-lightbox="portfolio"><i class="fas fa-eye"></i></a>
+                                    <a class="btn" href="{{ asset('assets/produits/' ~ produit.image) }}" data-lightbox="portfolio"><i class="fas fa-shopping-cart"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-3 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="portfolio-wrap">
-                        <div class="portfolio-img">
-                            <img src="{{ asset('assets/img/robe-3.jpg') }}" alt="Image">
-                        </div>
-                        <div class="portfolio-text">
-                            <h3>Robe asymétrique</h3>
-                            <div class="price-dress">
-                                <i>32,45 &euro;</i>
-                            </div>
-                            <div class="stars">
-                                <i class="fa fa-star gold"></i>
-                                <i class="fa fa-star gold"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="btn-prod">
-                                <a class="btn" href="{{ asset('assets/img/robe-3.jpg') }}" data-lightbox="portfolio"><i class="fas fa-eye"></i></a>
-                                <a class="btn" href="{{ asset('assets/img/robe-3.jpg') }}" data-lightbox="portfolio"><i class="fas fa-shopping-cart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-1 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="portfolio-wrap">
-                        <div class="portfolio-img">
-                            <img src="{{ asset('assets/img/robe-4.jpg') }}" alt="Image">
-                        </div>
-                        <div class="portfolio-text">
-                            <h3>Robe pull</h3>
-                            <div class="price-dress">
-                                <i>12,35 &euro;</i>
-                            </div>
-                            <div class="stars">
-                                <i class="fa fa-star gold"></i>
-                                <i class="fa fa-star gold"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="btn-prod">
-                                <a class="btn" href="{{ asset('assets/img/robe-4.jpg') }}" data-lightbox="portfolio"><i class="fas fa-eye"></i></a>
-                                <a class="btn" href="{{ asset('assets/img/robe-4.jpg') }}" data-lightbox="portfolio"><i class="fas fa-shopping-cart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-2 wow fadeInUp" data-wow-delay="0.8s">
-                    <div class="portfolio-wrap">
-                        <div class="portfolio-img">
-                            <img src="{{ asset('assets/img/robe-5.jpg') }}" alt="Image">
-                        </div>
-                        <div class="portfolio-text">
-                            <h3>Robe patineuse</h3>
-                            <div class="price-dress">
-                                <i>21,65 &euro;</i>
-                            </div>
-                            <div class="stars">
-                                <i class="fa fa-star gold"></i>
-                                <i class="fa fa-star gold"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="btn-prod">
-                                <a class="btn" href="{{ asset('assets/img/robe-5.jpg') }}" data-lightbox="portfolio"><i class="fas fa-eye"></i></a>
-                                <a class="btn" href="{{ asset('assets/img/robe-5.jpg') }}" data-lightbox="portfolio"><i class="fas fa-shopping-cart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-3 wow fadeInUp" data-wow-delay="1s">
-                    <div class="portfolio-wrap">
-                        <div class="portfolio-img">
-                            <img src="{{ asset('assets/img/robe-6.jpg') }}" alt="Image">
-                        </div>
-                        <div class="portfolio-text">
-                            <h3>Robe trapèze</h3>
-                            <div class="price-dress">
-                                <i>50 &euro;</i>
-                            </div>
-                            <div class="stars">
-                                <i class="fa fa-star gold"></i>
-                                <i class="fa fa-star gold"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="btn-prod">
-                                <a class="btn" href="{{ asset('assets/img/robe-6.jpg') }}" data-lightbox="portfolio"><i class="fas fa-eye"></i></a>
-                                <a class="btn" href="{{ asset('assets/img/robe-6.jpg') }}" data-lightbox="portfolio"><i class="fas fa-shopping-cart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

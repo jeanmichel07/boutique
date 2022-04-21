@@ -5,8 +5,8 @@
         {% set label_img = produit.nom is not null? 'Modifier l\'image' : 'Choisissez un image' %}
 {{ form_start(form, {'attr':{'class':'row g-3','enctype':'multipart/form-data'}}) }}
         <div class="col-8" style="display: flex; flex-direction: column">
-            <label for="img" class="form-label label-img">{{ label_img }}</label>
-            <input id="img" type="file" accept="image/*" onchange="loadFile(event)" name="img" style="display: none">
+            <label for="img" class="form-label label-img ">{{ label_img }}</label>
+            <input id="img" type="file" accept="image/*" onchange="loadFile(event)" name="img" style="display: none" >
             <img class="img_output" src="{{ asset(src) }}" width="200px" />
         </div>
         <div class="col-8">

@@ -36,8 +36,9 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $produit->setStatus(true);
-            if(isset($_FILES['img'])){
+
+            if(isset($_FILES['img']) && ($_FILES['img']['name'])){
+                $produit->setStatus(true);
                 $errors= array();
                 $file_name = $_FILES['img']['name'];
                 $file_size =$_FILES['img']['size'];
