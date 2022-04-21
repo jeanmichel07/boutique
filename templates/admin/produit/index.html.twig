@@ -3,10 +3,11 @@
 {% block title %}Produit index{% endblock %}
 
 {% block body %}
+
     <h3>Liste des produit</h3>
     <a class="btn btn-primary" href="{{ path('app_produit_new') }}">Nouveau produit</a>
     <hr>
-    <table id="example1" class="table">
+    <table id="example" class="table">
         <thead>
             <tr>
                 <th>Numéro</th>
@@ -18,10 +19,14 @@
             </tr>
         </thead>
         <tbody>
-        {% for produit in produits|reverse %}
+        {% for produit in produits %}
             <tr>
                 <td>{{ produit.id }}</td>
-               <td> <img src="{{(produit.image) ? asset('assets/produits/' ~ produit.image) : asset('assets/img/default.jpg') }} " width="70" title="" alt=""></td>
+               <td>
+                   <div class="img-panel">
+                       <img class="img " width="70" src="{{(produit.image) ? asset('assets/produits/' ~ produit.image) : asset('assets/img/default.jpg') }} " alt="">
+                   </div>
+               </td>
                 <td>{{ produit.nom }}</td>
                 <td>{{ produit.prix }}</td>
                 <td>{{ produit.categorie.nom }}</td>
@@ -37,4 +42,23 @@
         {% endfor %}
         </tbody>
     </table>
+    <div id="img-out"></div>
+    <div class="add-img-fieldset">
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ include('admin/produit/script/javascript.html.twig') }}
+    <script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+            }
+        });
+
+    } );
+
+    </script>
+
 {% endblock %}

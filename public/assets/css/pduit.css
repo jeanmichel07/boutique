@@ -1,0 +1,121 @@
+
+.img {
+    width: 50px;
+    border-radius: 5px;
+    cursor: zoom-in;
+    display: block;
+}
+.img-panel {
+    padding: 5px;
+    background-color: transparent;
+    height: auto;
+    width: auto;
+    display: inline-block;
+    transition: all 200ms ease;
+    border-radius: 5px;
+}
+.img-panel:hover {
+     background-color: #20A4F3;
+ }
+
+.img-panel__selct {
+    background-color: #20A4F3;
+
+}
+.display-box {
+    padding: 1em;
+    max-width: 1000px;
+    min-width: 300px;
+    margin: 1em auto;
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: repeat(auto-fill, 210px);
+    grid-autoflow: row;
+    justify-content: center;
+
+}
+.img-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    transition: all 200ms ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img-wrapper__initial {
+    background-color: rgba(0,0,0,.7);
+}
+.image__selected {
+    max-width: 50vw;
+    max-height: 65vh;
+    display: block;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+    position: relative;
+    border: transparent solid 4px;
+    border-radius: 5px;
+}
+.img-selected-initial {
+    border: white solid 4px;
+}
+.img-close {
+    height: 174px;
+    width: 2558px;
+    position: absolute;
+    top: 1.5em;
+    left: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 200ms ease-in-out;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.img-close:hover {
+    /*background-color: #CA3B4E;*/
+}
+.img-close:before {
+    content: " ";
+    height: 40px;
+    width: 5px;
+    background-color: white;
+    transform: rotate(45deg);
+    position: absolute;
+    cursor: pointer;
+}
+.img-close:after {
+    content: " ";
+    height: 40px;
+    width: 5px;
+    transform: rotate(135deg);
+    position: absolute;
+    z-index: 100;
+    background-color: white;
+    cursor: pointer;
+
+}
+
+.add-img-fieldset {
+    padding: 1em;
+}
+.file-input {
+    visibility: hidden;
+}
+.file-input-label {
+    padding: 10px 15px;
+    background-color: #255F85;
+    border-radius: 3px;
+    font-family: sans-serif;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+}
+.file-input-label:hover {
+    background-color: #4C7C9B;
+}

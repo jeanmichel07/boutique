@@ -1,0 +1,67 @@
+<script>
+    // Here is our function that makes the magic happen.
+    // When new images are added call this function again
+    // to assign the event listeners.
+    function imageViewer () {
+        // Lets start by collecting all of the images
+        // with our special class and also grabing the output container
+        let imgs = document.getElementsByClassName("img"),
+            out  = document.getElementById("img-out");
+        Object.values(imgs).forEach(element => {
+
+        })
+
+        // Next lets assign an event listener to each image
+        // by looping through them
+        for(let i = 0; i < imgs.length; i++) {
+
+            // We need to make sure we dont add listeners more than one time
+            // to an image
+            if(!imgs[i].classList.contains("el")){
+
+                imgs[i].classList.add("el");
+                // In this listener we are going to toggle a special class
+                // that will highlight the image container
+                imgs[i].addEventListener("click", lightImage);
+                function lightImage(){
+                    let container = document.getElementsByClassName("img-panel")[i];
+                    container.classList.toggle("img-panel__selct");
+                };
+
+                // Now we are going to create a second listener and let
+                // It render the image to the user.
+                imgs[i].addEventListener("click", openImage);
+                function openImage () {
+                    console.log(imgs[i], i);
+                    let imgElement = document.createElement("img"),
+                        imgWrapper = document.createElement("div"),
+                        imgClose   = document.createElement("div"),
+                        container  = document.getElementsByClassName("img-panel")[i];
+                    container.classList.add("img-panel__selct");
+                    imgElement.setAttribute("class", "image__selected");
+                    imgElement.src = imgs[i].src;
+                    imgWrapper.setAttribute("class", "img-wrapper");
+                    imgClose.setAttribute("class", "img-close");
+                    imgWrapper.appendChild(imgElement);
+                    imgWrapper.appendChild(imgClose);
+
+
+                    setTimeout(
+                        function(){
+                            imgWrapper.classList.add("img-wrapper__initial");
+                            imgElement.classList.add("img-selected-initial");
+                        }, 50);
+
+                    out.appendChild(imgWrapper);
+                    imgClose.addEventListener("click", function(){
+                        container.classList.remove("img-panel__selct");
+                        out.removeChild(imgWrapper);
+                    });
+                }
+            }
+        }
+    }
+
+    imageViewer();
+
+</script>
