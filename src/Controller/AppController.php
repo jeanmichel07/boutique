@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Produit;
 use App\Repository\CategorieRepository;
+use App\Repository\GallerieRepository;
 use App\Repository\ProduitRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,11 +22,16 @@ class AppController extends AbstractController
      * @var CategorieRepository
      */
     private $categorieRepository;
+    /**
+     * @var GallerieRepository
+     */
+    private $gallerieRepository;
 
-    public function __construct(ProduitRepository $produitRepository,CategorieRepository $categorieRepository)
+    public function __construct(ProduitRepository $produitRepository,CategorieRepository $categorieRepository,GallerieRepository $gallerieRepository)
     {
         $this->produitRepository = $produitRepository;
         $this->categorieRepository = $categorieRepository;
+        $this->gallerieRepository = $gallerieRepository;
     }
 
     /**
@@ -62,5 +69,18 @@ class AppController extends AbstractController
                 'nomCateg' =>$nomCateg
             ]);
         }
+    }
+
+    /**
+     * @Route("/details/{id}", name="produit_details")
+     */
+    public function details(Produit $produit): Response
+    {
+        $galleries = $this->gallerieRepository->findByProduit($produit);
+
+        return $this->renderForm('admin/produit/details.html.twig', [
+            'produit' => $produit,
+            'galeries' => $galleries,
+        ]);
     }
 }

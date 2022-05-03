@@ -8,7 +8,6 @@ use App\Form\GallerieType;
 use App\Form\ProduitType;
 use App\Repository\GallerieRepository;
 use App\Repository\ProduitRepository;
-use Doctrine\DBAL\Exception\DatabaseDoesNotExist;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -84,7 +83,7 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_produit_show", methods={"GET","POST"})
+     * @Route("/{id}", name="app_produit_show", methods={"GET","POST"} ,  requirements={"id":"\d+"})
      */
     public function show(Produit $produit,Request $request): Response
     {
@@ -94,12 +93,14 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $file =  $form->get('src')->getData();
             $fileName = $file->getClientOriginalName() ;
             $gallerie->setProduit($produit);
             $file->move($this->getParameter('photos_directory'), $fileName);
             $gallerie->setSrc($fileName);
             $this->gallerieRepository->add($gallerie);
+            $listGalerie = $this->gallerieRepository->findByProduit($produit);
 
             return $this->render('admin/produit/show.html.twig', [
                 'produit' => $produit,
@@ -166,4 +167,7 @@ class ProduitController extends AbstractController
 
         return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
 }

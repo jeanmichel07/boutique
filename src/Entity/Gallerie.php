@@ -18,11 +18,6 @@ class Gallerie
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
-    private $name;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $src;
@@ -42,17 +37,6 @@ class Gallerie
         return $this->id;
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(?string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
 
     public function getSrc(): ?string
     {

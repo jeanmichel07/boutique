@@ -39,42 +39,16 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3" >
                     <!-- About Me Box -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">About Me</h3>
+                            <h3 class="card-title  text-center ">{{ produit.nom }}</h3><h5 class="text-left">{{ produit.prix }} $</h5>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <strong><i class="fas fa-book mr-1"></i> Education</strong>
-
-                            <p class="text-muted">
-                                B.S. in Computer Science from the University of Tennessee at Knoxville
-                            </p>
-
-                            <hr>
-
-                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
-
-                            <p class="text-muted">Malibu, California</p>
-
-                            <hr>
-
-                            <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
-
-                            <p class="text-muted">
-                                <span class="tag tag-danger">UI Design</span>
-                                <span class="tag tag-success">Coding</span>
-                                <span class="tag tag-info">Javascript</span>
-                                <span class="tag tag-warning">PHP</span>
-                                <span class="tag tag-primary">Node.js</span>
-                            </p>
-
-                            <hr>
-
-                            <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
-
+                            <p class="text-center">
+                            <strong><i class="far fa-file-alt p-2   "></i> Details</strong></p>
                             <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
                         </div>
                         <!-- /.card-body -->
@@ -83,17 +57,17 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-md-9">
+                    <h3>GALLERIE</h3>
                     <div class="card">
                         <div class="card-header p-2">
                             {{ form_start(form) }}
-                            {{ form_widget(form.name)}}
-                            {{ form_widget(form.src)}}
                             {{ form_widget(form.status)}}
+                            {{ form_widget(form.src)}}
                             <button class="btn btn-primary btn-">{{ button_label|default('Enregistrer') }}</button>
                             {{ form_end(form) }}
                         </div><!-- /.card-header -->
                         <div class="card-body">
-                                <div class="row">
+                                <div class="row p-2">
 
                                         {% for gallerie in galleries %}
                                         <div class="col-sm-2">
@@ -102,9 +76,7 @@
                                             </a>
                                         </div>
                                         {% endfor %}
-
                                 </div>
-
                         </div><!-- /.card-body -->
                     </div>
                     <!-- /.card -->
