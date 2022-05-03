@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Gallerie{% endblock %}
+
+{% block body %}
+    <h1>Edit Gallerie</h1>
+
+    {{ include('admin/gallerie/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_gallerie_index') }}">back to list</a>
+
+    {{ include('admin/gallerie/_delete_form.html.twig') }}
+{% endblock %}

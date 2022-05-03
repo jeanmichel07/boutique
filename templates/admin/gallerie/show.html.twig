@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gallerie{% endblock %}
+
+{% block body %}
+    <h1>Gallerie</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ gallerie.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ gallerie.name }}</td>
+            </tr>
+            <tr>
+                <th>Src</th>
+                <td>{{ gallerie.src }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ gallerie.status ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_gallerie_index') }}">back to list</a>
+
+    <a href="{{ path('app_gallerie_edit', {'id': gallerie.id}) }}">edit</a>
+
+    {{ include('admin/gallerie/_delete_form.html.twig') }}
+{% endblock %}

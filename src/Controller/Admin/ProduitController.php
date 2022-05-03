@@ -2,9 +2,13 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Gallerie;
 use App\Entity\Produit;
+use App\Form\GallerieType;
 use App\Form\ProduitType;
+use App\Repository\GallerieRepository;
 use App\Repository\ProduitRepository;
+use Doctrine\DBAL\Exception\DatabaseDoesNotExist;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +19,17 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ProduitController extends AbstractController
 {
+
+    /**
+     * @var GallerieRepository
+     */
+    private $gallerieRepository;
+
+    public function __construct(GallerieRepository $gallerieRepository)
+    {
+        $this->gallerieRepository = $gallerieRepository;
+    }
+
     /**
      * @Route("/", name="app_produit_index", methods={"GET"})
      */
@@ -69,12 +84,34 @@ class ProduitController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_produit_show", methods={"GET"})
+     * @Route("/{id}", name="app_produit_show", methods={"GET","POST"})
      */
-    public function show(Produit $produit): Response
+    public function show(Produit $produit,Request $request): Response
     {
+        $listGalerie = $this->gallerieRepository->findByProduit($produit);
+        $gallerie = new Gallerie();
+        $form = $this->createForm(GallerieType::class, $gallerie);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file =  $form->get('src')->getData();
+            $fileName = $file->getClientOriginalName() ;
+            $gallerie->setProduit($produit);
+            $file->move($this->getParameter('photos_directory'), $fileName);
+            $gallerie->setSrc($fileName);
+            $this->gallerieRepository->add($gallerie);
+
+            return $this->render('admin/produit/show.html.twig', [
+                'produit' => $produit,
+                'form' => $form->createView(),
+                'galleries'=>$listGalerie,
+            ]);
+        }
+
         return $this->render('admin/produit/show.html.twig', [
             'produit' => $produit,
+            'form' => $form->createView(),
+            'galleries'=>$listGalerie,
         ]);
     }
 

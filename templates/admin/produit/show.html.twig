@@ -3,32 +3,116 @@
 {% block title %}Produit{% endblock %}
 
 {% block body %}
-    <h1>Produit</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ produit.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ produit.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ produit.prix }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ produit.status ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_produit_index') }}">back to list</a>
 
-    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
+{#    <h1>Produit</h1>#}
 
-    {{ include('admin/produit/_delete_form.html.twig') }}
+{#    <table class="table">#}
+{#        <tbody>#}
+{#            <tr>#}
+{#                <th>Id</th>#}
+{#                <td>{{ produit.id }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Nom</th>#}
+{#                <td>{{ produit.nom }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Prix</th>#}
+{#                <td>{{ produit.prix }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Status</th>#}
+{#                <td>{{ produit.status ? 'Yes' : 'No' }}</td>#}
+{#            </tr>#}
+{#        </tbody>#}
+{#    </table>#}
+{#    #}
+
+{#    <a href="{{ path('app_produit_index') }}">back to list</a>#}
+
+{#    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>#}
+
+{#    {{ include('admin/produit/_delete_form.html.twig') }}#}
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <!-- About Me Box -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">About Me</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <strong><i class="fas fa-book mr-1"></i> Education</strong>
+
+                            <p class="text-muted">
+                                B.S. in Computer Science from the University of Tennessee at Knoxville
+                            </p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+
+                            <p class="text-muted">Malibu, California</p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+
+                            <p class="text-muted">
+                                <span class="tag tag-danger">UI Design</span>
+                                <span class="tag tag-success">Coding</span>
+                                <span class="tag tag-info">Javascript</span>
+                                <span class="tag tag-warning">PHP</span>
+                                <span class="tag tag-primary">Node.js</span>
+                            </p>
+
+                            <hr>
+
+                            <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+
+                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header p-2">
+                            {{ form_start(form) }}
+                            {{ form_widget(form.name)}}
+                            {{ form_widget(form.src)}}
+                            {{ form_widget(form.status)}}
+                            <button class="btn btn-primary btn-">{{ button_label|default('Enregistrer') }}</button>
+                            {{ form_end(form) }}
+                        </div><!-- /.card-header -->
+                        <div class="card-body">
+                                <div class="row">
+
+                                        {% for gallerie in galleries %}
+                                        <div class="col-sm-2">
+                                            <a href="{{(gallerie.src) ? asset('uploads/photos/' ~ gallerie.src) : asset('assets/img/default.jpg') }}" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
+                                                <img src="{{(gallerie.src) ? asset('uploads/photos/' ~ gallerie.src) : asset('assets/img/default.jpg') }} " class="img-fluid mb-2" alt="white sample">
+                                            </a>
+                                        </div>
+                                        {% endfor %}
+
+                                </div>
+
+                        </div><!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+
 {% endblock %}
