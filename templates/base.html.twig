@@ -12,7 +12,7 @@
 
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <script defer src="{{ asset('assets/js/all.js') }}" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+        <script defer src="{{ asset('assets/js/all.js') }}" crossorigin="anonymous"></script>
         <!-- CSS Libraries -->
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/all.min.css') }}" rel="stylesheet">
@@ -20,8 +20,9 @@
         <link href="{{ asset('assets/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('assets/css/user.css') }}">
-        <link rel="stylesheet" href="https//cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
         <!-- Template Stylesheet -->
+        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {% block stylesheets %}
@@ -33,7 +34,7 @@
     <!-- Nav Bar Start -->
     <div class="navbar navbar-expand-lg bg-light navbar-light">
         <div class="container-fluid">
-            <a href="index.html" class="navbar-brand">
+            <a href="/" class="navbar-brand">
                 <img src="{{ asset('assets/img/logo.png') }}" width="100%">
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -42,10 +43,10 @@
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto">
-                    <a href="#home" class="nav-item nav-link active">Accueil</a>
-                    <a href="#about" class="nav-item nav-link">Nos produits</a>
+                    <a href="/" class="nav-item nav-link active">Accueil</a>
                     <a href="#service" class="nav-item nav-link">Qui sommes nous?</a>
                     <a href="#contact" class="nav-item nav-link contact-menu">Nous contacter</a>
+                    <a href="{{ path('cart') }}" class="nav-item nav-link contact-menu">Mon panier <i class="fas fa-shopping-cart"></i><span class="added">{{ app.session.get('panier')|length }}</span></a>
                     {% if app.user %}
                     <div class="nav-item nav-link half">
                         <label for="profile2" class="profile-dropdown">
@@ -117,6 +118,7 @@
     <!-- Template Javascript -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('assets/js/demos.js') }}"></script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
     {% block javascripts %}
     {% endblock %}
     </body>

@@ -67,8 +67,9 @@
                                     <i class="fa fa-star"></i>
                                 </div>
                                 <div class="btn-prod">
-                                    <a class="btn" href="{{ path('produit_details', {'id': produit.id}) }}" ><i class="fas fa-eye"></i></a>
-                                    <a class="btn" href="{{ asset('assets/produits/' ~ produit.image) }}" data-lightbox="portfolio"><i class="fas fa-shopping-cart"></i></a>
+                                    <a class="btn" href="{{ path('produit_details', {'id': produit.id}) }}" >Details</a>
+                                    <a class="btn" href="{{ asset('assets/produits/' ~ produit.image) }}" data-lightbox="portfolio"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ path('add', {'id': produit.id}) }}" class="btn cart"><i class="fas fa-shopping-cart"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -79,3 +80,4 @@
     </div>
     <!-- Portfolio End -->
 {% endblock %}
+

@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="hero" id="home">
+    <div class="container-fluid">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="">
+            <!-- Main content -->
+            <section class="content">
+                <div class="card card-solid">
+                    <div class="card-body">
+                        <h2>Mon panier</h2>
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Produit</th>
+                                        <th>Prix</th>
+                                        <th>Quantite</th>
+                                        <th>Total</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for el in dataPanier|reverse %}
+                                        <tr>
+                                            <td>{{ el.produit.nom }}</td>
+                                            <td>{{ el.produit.prix }} &euro;</td>
+                                            <td>{{ el.quantite }}</td>
+                                            <td>{{ el.quantite * el.produit.prix }} &euro;</td>
+                                            <td>
+                                                <a href="{{ path('add', {'id': el.produit.id}) }}" class="btn-2 cart"><i class="fa fa-plus"></i></a>
+                                                <a href="{{ path('remove', {'id': el.produit.id}) }}" class="btn-2-warning cart"><i class="fas fa-minus"></i></a>
+                                                <a href="{{ path('delete', {'id': el.produit.id}) }}" class="btn-2-danger"><i class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="5"><i>Votre panier est vide</i></td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="2">
+
+                                        </td>
+                                        <th>
+                                            Total:
+                                        </th>
+                                        <td colspan="2">
+                                            {{ total }} &euro;
+                                        </td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                                {% if app.user %}
+                                <a class="btn" href="#">Passer au paiement</a>
+                                {% else %}
+                                <a class="btn" href="{{ path('app_login',{'con':2}) }}">Connectez vous d'abord</a>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
