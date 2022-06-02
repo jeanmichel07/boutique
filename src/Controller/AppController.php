@@ -41,33 +41,30 @@ class AppController extends AbstractController
     {
 
 
-        if($this->getUser()){
-            if($this->getUser()->getRoles() == ["ROLE_ADMIN"]){
+        if($this->getUser()) {
+            if ($this->getUser()->getRoles() == ["ROLE_ADMIN"]) {
                 return $this->redirectToRoute('dasboard');
-            }else{
+
+            } else {
+
+                $nomCateg = ($request->get('categ'));
+
+                if ($nomCateg) {
+                    $oneCateg = $this->categorieRepository->findByNom($nomCateg);
+                    $produits = $this->produitRepository->findByCategorie($oneCateg);
+                    $categories = $this->categorieRepository->findBy(["status" => 1]);
+                } else {
+                    $produits = $this->produitRepository->findAll();
+                    $categories = $this->categorieRepository->findBy(["status" => 1]);
+                }
+
                 return $this->render('app/index.html.twig', [
                     'controller_name' => 'AppController',
+                    'produits' => $produits,
+                    'categories' => $categories,
+                    'nomCateg' => $nomCateg
                 ]);
             }
-        }else{
-
-            $nomCateg = ($request->get('categ'));
-
-            if ($nomCateg){
-                $oneCateg = $this->categorieRepository->findByNom($nomCateg);
-                $produits   = $this->produitRepository->findByCategorie($oneCateg);
-                $categories = $this->categorieRepository->findBy(["status"=>1 ]);
-            }else{
-                $produits   = $this->produitRepository->findAll();
-                $categories = $this->categorieRepository->findBy(["status"=>1 ]);
-            }
-
-            return $this->render('app/index.html.twig', [
-                'controller_name' => 'AppController',
-                'produits' =>$produits,
-                'categories' =>$categories,
-                'nomCateg' =>$nomCateg
-            ]);
         }
     }
 
