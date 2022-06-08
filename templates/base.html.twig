@@ -27,6 +27,18 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {% block stylesheets %}
         {% endblock %}
+        <style>
+            .StripeElement {
+                color: #495057;
+                background-color: #fff;
+                border-color: #b2b2b2;
+                width: 50%;
+                height: 40px;
+                padding: 10px 12px;
+                display: flex;
+                flex-direction: column;
+            }
+        </style>
 
 </head>
 
@@ -46,7 +58,11 @@
                     <a href="/" class="nav-item nav-link active">Accueil</a>
                     <a href="#service" class="nav-item nav-link">Qui sommes nous?</a>
                     <a href="#contact" class="nav-item nav-link contact-menu">Nous contacter</a>
-                    <a href="{{ path('cart') }}" class="nav-item nav-link contact-menu">Mon panier <i class="fas fa-shopping-cart"></i><span class="added">{{ app.session.get('panier')|length }}</span></a>
+                    {% set cart = 0 %}
+                    {% for item in app.session.get('panier') %}
+                        {% set cart = cart + item %}
+                    {% endfor %}
+                    <a href="{{ path('cart') }}" class="nav-item nav-link contact-menu">Mon panier <i class="fas fa-shopping-cart"></i><span class="added">{{ cart }}</span></a>
                     {% if app.user %}
                     <div class="nav-item nav-link half">
                         <label for="profile2" class="profile-dropdown">

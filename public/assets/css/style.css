@@ -20,14 +20,6 @@ a {
     transition: .3s;
 }
 
-a:hover,
-a:active,
-a:focus {
-    color: rgb(226, 95, 172);
-    outline: none;
-    text-decoration: none;
-}
-
 .btn:focus,
 .form-control:focus {
     box-shadow: none;
@@ -49,6 +41,48 @@ a:focus {
     transition: ease-out 0.3s;
     -webkit-transition: ease-out 0.3s;
     -moz-transition: ease-out 0.3s;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    display: block;
+}
+.btn:hover {
+    color: rgb(226, 95, 172);
+    background: transparent;
+    box-shadow: inset 0 0 0 0 rgb(226, 95, 172);
+    border-color: rgb(226, 95, 172);
+}
+
+.btn::after {
+    content: '';
+    display: block;
+    width: 1.2em;
+    height: 1.2em;
+    position: absolute;
+    left: calc(50% - 0.75em);
+    top: calc(50% - 0.75em);
+    border: 0.15em solid transparent;
+    border-right-color: rgb(30, 135, 246);
+    border-radius: 50%;
+    animation: button-anim 0.7s linear infinite;
+    opacity: 0;
+}
+
+@keyframes button-anim {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.btn.loading {
+    color: transparent;
+}
+
+.btn.loading::after {
+    opacity: 1;
 }
 .btn-2 {
     padding: 5px 7px;
@@ -144,14 +178,6 @@ a:focus {
     -webkit-transition: ease-out 0.3s;
     -moz-transition: ease-out 0.3s;
 }
-
-.btn:hover {
-    color: rgb(226, 95, 172);
-    background: transparent;
-    box-shadow: inset 0 0 0 0 rgb(226, 95, 172);
-    border-color: rgb(226, 95, 172);
-}
-
 #loader {
     position: fixed;
     top: 0;
@@ -954,14 +980,14 @@ a:focus {
 .portfolio .portfolio-img {
     position: relative;
     overflow: hidden;
+    text-align: center;
+    width: 100%;
 }
 
 .portfolio .portfolio-img img {
-    position: relative;
-    width: 100%; 
-    height: 275px;
-    object-fit: cover;
-    transform: scale(1.1);
+    width: 60%;
+    height: 284px;
+    object-fit: contain;
     transition: .5s;
 }
 
@@ -973,7 +999,7 @@ a:focus {
     position: relative;
     min-height: 60px;
     width: calc(100% - 30px);
-    margin: -30px 15px 30px 15px;
+    margin: 1px 15px 30px 15px;
     display: flex;
     align-items: center;
     background: #f5f5f5;
@@ -991,13 +1017,13 @@ a:focus {
 }
 
 .portfolio .portfolio-text a.btn {
-    width: 50px;
-    height: 40px;
-    padding: 0 0 2px 1px;
+    width: 65px;
+    height: 33px;
+    padding: 1px 6px 2px 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 11.5px;
     font-weight: 100;
     border-radius: 10px;
     font-family: Arial;

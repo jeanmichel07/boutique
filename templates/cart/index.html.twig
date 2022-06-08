@@ -56,7 +56,7 @@
                                     </tfoot>
                                 </table>
                                 {% if app.user %}
-                                <a class="btn" href="#">Passer au paiement</a>
+                                <a class="btn" href="{{ path("payment") }}">Passer au paiement</a>
                                 {% else %}
                                 <a class="btn" href="{{ path('app_login',{'con':2}) }}">Connectez vous d'abord</a>
                                 {% endif %}

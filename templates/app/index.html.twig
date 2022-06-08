@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="row portfolio-container">
-                {% for produit in produits %}
+                {% for produit in produits|reverse %}
                     <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-1 wow fadeInUp" data-wow-delay="0.0s">
                         <div class="portfolio-wrap">
                             <div class="portfolio-img">
@@ -69,7 +69,13 @@
                                 <div class="btn-prod">
                                     <a class="btn" href="{{ path('produit_details', {'id': produit.id}) }}" >Details</a>
                                     <a class="btn" href="{{ asset('assets/produits/' ~ produit.image) }}" data-lightbox="portfolio"><i class="fas fa-eye"></i></a>
-                                    <a href="{{ path('add', {'id': produit.id}) }}" class="btn cart"><i class="fas fa-shopping-cart"></i></a>
+                                    {% set index = 0 %}
+                                    {% for key,val in app.session.get('panier') %}
+                                        {% if key == produit.id %}
+                                            {% set index = app.session.get('panier')|length > 0 ? app.session.get('panier')[produit.id] : 0 %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    <a href="{{ path('add', {'id': produit.id}) }}" class="btn cart" data-id="{{ produit.id }}"><i class="fas fa-shopping-cart"></i><span>({{ index }})</span></a>
                                 </div>
                             </div>
                         </div>

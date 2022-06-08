@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Produit;
+use App\Manager\StripeManager;
 use App\Repository\CategorieRepository;
 use App\Repository\GallerieRepository;
 use App\Repository\ProduitRepository;
@@ -11,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AppController extends AbstractController
+class  AppController extends AbstractController
 {
 
     /**
@@ -39,18 +40,11 @@ class AppController extends AbstractController
      */
     public function index(Request $request): Response
     {
-
-
         if($this->getUser()){
             if($this->getUser()->getRoles() == ["ROLE_ADMIN"]){
                 return $this->redirectToRoute('dasboard');
-            }else{
-                return $this->render('app/index.html.twig', [
-                    'controller_name' => 'AppController',
-                ]);
             }
-        }else{
-
+        }
             $nomCateg = ($request->get('categ'));
 
             if ($nomCateg){
@@ -68,7 +62,7 @@ class AppController extends AbstractController
                 'categories' =>$categories,
                 'nomCateg' =>$nomCateg
             ]);
-        }
+
     }
 
     /**
@@ -82,5 +76,9 @@ class AppController extends AbstractController
             'produit' => $produit,
             'galeries' => $galleries,
         ]);
+    }
+
+    public function commandUser(Request $request){
+
     }
 }
