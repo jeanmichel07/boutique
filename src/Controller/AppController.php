@@ -62,7 +62,6 @@ class  AppController extends AbstractController
                 'categories' =>$categories,
                 'nomCateg' =>$nomCateg
             ]);
-
     }
 
     /**
